@@ -1,3 +1,6 @@
+
+/docker/*.war
+
 ### NetBeans template
 nbproject/private/
 build/
