@@ -83,12 +83,22 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <outputDirectory>docker/deploy</outputDirectory>
+                    <warName>ROOT</warName>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <profiles>
-        <profile>
-            <id>dev</id>
-        </profile>
         <profile>
             <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
             <!-- Use this profile for any OpenShift specific customization your app will need. -->
