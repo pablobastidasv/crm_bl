@@ -109,3 +109,5 @@ local.properties
 .texlipse
 
 # Created by .ignore support plugin (hsz.mobi)
+
+/docker/deploy/*.war.*
