@@ -1,0 +1,20 @@
+
+mongodb:
+  image: mongo
+  container_name: crm_db
+  restart: always
+  command: --smallfiles
+  volumes:
+    - ./data:/data/db
+
+crm_bl:
+  image: jboss/wildfly
+  container_name: crm_bl
+  volumes:
+    - ./deploy:/opt/jboss/wildfly/standalone/deployments/
+  ports:
+    - "8080:8080"
+    - "8787:8787"
+  links:
+    - mongodb
+  command: /opt/jboss/wildfly/bin/standalone.sh --debug 8787 -b 0.0.0.0 
