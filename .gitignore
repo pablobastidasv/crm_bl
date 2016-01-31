@@ -110,4 +110,4 @@ local.properties
 
 # Created by .ignore support plugin (hsz.mobi)
 
-/docker/deploy/*.war.*
+/docker/deploy/*.war*

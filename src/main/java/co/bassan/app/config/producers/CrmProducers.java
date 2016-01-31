@@ -1,9 +1,7 @@
-package co.bassan.app.config;
+package co.bassan.app.config.producers;
 
 import co.bassan.app.contacts.boundary.ContactsManager;
-import com.mongodb.MongoClient;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -21,14 +19,5 @@ public class CrmProducers {
         return new ContactsManager(ds);
     }
 
-    @Produces
-    public Datastore datastoreProducer(){
-
-        final Morphia morphia = new Morphia();
-        final MongoClient mongo = new MongoClient();
-
-        return morphia.createDatastore(mongo, "crm");
-
-    }
 
 }
