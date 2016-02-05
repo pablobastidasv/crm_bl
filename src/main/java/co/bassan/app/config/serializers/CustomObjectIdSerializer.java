@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by pbastidas on 1/29/16.
  */
-public class CustumObjectIdSerializer  extends JsonSerializer<ObjectId> {
+public class CustomObjectIdSerializer extends JsonSerializer<ObjectId> {
 
     @Override
     public void serialize(ObjectId objectId, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {

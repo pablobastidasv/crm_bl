@@ -1,6 +1,7 @@
 package co.bassan.app.contacts.model;
 
-import co.bassan.app.config.serializers.CustumObjectIdSerializer;
+import co.bassan.app.config.serializers.CustomDateSerializer;
+import co.bassan.app.config.serializers.CustomObjectIdSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.bson.types.ObjectId;
@@ -20,10 +21,11 @@ import java.util.List;
 public class Contact {
 
     @Id
-    @JsonSerialize(using = CustumObjectIdSerializer.class)
+    @JsonSerialize(using = CustomObjectIdSerializer.class)
     private ObjectId id;
     private String firstName;
     private String lastName;
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Date creationDate;
     @Embedded
     private List<Phone> phones;

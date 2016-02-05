@@ -16,13 +16,13 @@ import java.util.Date;
  */
 public class CustomDateSerializer extends JsonSerializer<Date> {
 
-    private static final DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+    private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
 
         if(date == null){
-            jsonGenerator.writeString("null");
+            jsonGenerator.writeNull();
         }
 
         jsonGenerator.writeString(df.format(date));
