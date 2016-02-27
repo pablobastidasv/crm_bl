@@ -6,16 +6,24 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import org.apache.commons.lang.StringUtils;
 
-import javax.enterprise.inject.Default;
+import javax.annotation.PostConstruct;
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Singleton;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Objects;
 
 /**
- * Created by pbastidas on 1/30/16.
+ * Singleton EJB to have only one mongo client for the app
+ * to avoid multiple connections.
+ *
+ * @author pbastidas
  */
+@Singleton
+@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class MongoClientProducer {
 
     @Inject
@@ -42,9 +50,17 @@ public class MongoClientProducer {
     @Property(value = "DOCKER_APP_NAME")
     private String appNameEnvNameProperty;
 
+    private MongoClient mongoClient;
+
     @Produces
     @Property
-    public MongoClient getMongoClient(){
+    @Lock(LockType.READ)
+    public MongoClient getMongoClient() {
+        return mongoClient;
+    }
+
+    @PostConstruct
+    public void init(){
         String host = System.getenv(hostEnvNameProperty);
         Integer port = Integer.valueOf(System.getenv(portEnvNameProperty));
         String user = System.getenv(userEnvNameProperty);
@@ -53,7 +69,7 @@ public class MongoClientProducer {
         String appName = System.getenv(appNameEnvNameProperty);
 
         if(StringUtils.isNotEmpty(url)){
-            return new MongoClient(new MongoClientURI(url));
+            mongoClient = new MongoClient(new MongoClientURI(url));
         } else if(StringUtils.isNotEmpty(user)){
             final MongoCredential credential = MongoCredential.createMongoCRCredential(user,
                     appName,
@@ -61,9 +77,9 @@ public class MongoClientProducer {
 
             final ServerAddress server = new ServerAddress(host, port);
 
-            return new MongoClient(server, Collections.singletonList(credential));
+            mongoClient = new MongoClient(server, Collections.singletonList(credential));
         } else{
-            return new MongoClient(host, port);
+            mongoClient = new MongoClient(host, port);
         }
     }
 
