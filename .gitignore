@@ -111,3 +111,5 @@ local.properties
 # Created by .ignore support plugin (hsz.mobi)
 
 /docker/deploy/*.war*
+/docker/data/mongod.lock
+/docker/data/journal
