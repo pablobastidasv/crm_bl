@@ -17,7 +17,7 @@ public class GeneralProduces {
     private MongoClient mongo;
 
     @Produces
-    private Datastore datastoreProducer(){
+    private Datastore   datastoreProducer(){
 
 
         final Morphia morphia = new Morphia();

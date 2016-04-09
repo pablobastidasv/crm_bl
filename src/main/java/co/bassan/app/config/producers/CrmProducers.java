@@ -1,6 +1,7 @@
 package co.bassan.app.config.producers;
 
 import co.bassan.app.contacts.boundary.ContactsManager;
+import co.bassan.app.opportunity.boundary.OpportunityManager;
 import org.mongodb.morphia.Datastore;
 
 import javax.enterprise.inject.Produces;

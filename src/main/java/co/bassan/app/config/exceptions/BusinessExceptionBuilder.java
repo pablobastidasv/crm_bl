@@ -1,5 +1,7 @@
 package co.bassan.app.config.exceptions;
 
+import java.util.Arrays;
+
 /**
  * Builder pattern to encapsulate the creation of a the ExceptionBusiness
  *
@@ -34,7 +36,11 @@ public class BusinessExceptionBuilder {
                 .isEmpty();
     }
 
-    public BusinessExceptionBuilder addMessage(ExceptionMessages.MessageType type, String message){
+    public BusinessExceptionBuilder addMessage(ExceptionMessages.MessageType type, String message, Object... params){
+        if(params != null && params.length > 0){
+            message = String.format(message, params);
+        }
+
         messagesBuilder.add(type, message);
 
         return this;

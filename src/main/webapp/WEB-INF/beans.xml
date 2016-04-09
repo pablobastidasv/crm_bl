@@ -8,6 +8,7 @@
 
     <interceptors>
         <class>co.bassan.app.config.interceptors.PaginatorInterceptor</class>
+        <!--<class>co.bassan.app.opportunity.validator.OpportunityValidatorInterceptor</class>-->
     </interceptors>
 
 </beans>

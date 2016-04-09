@@ -20,6 +20,9 @@ import java.util.List;
 @Entity(noClassnameStored = true, value = "contact")
 public class Contact {
 
+    public static final String FIRST_NAME_FIELD = "firstName";
+    public static final String LAST_NAME_FIELD = "lastName";
+
     @Id
     @JsonSerialize(using = CustomObjectIdSerializer.class)
     private ObjectId id;
