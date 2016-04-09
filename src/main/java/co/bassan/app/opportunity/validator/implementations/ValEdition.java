@@ -31,11 +31,11 @@ public class ValEdition implements Validator {
             builder.addMessage(ExceptionMessages.MessageType.ERROR, "The id is needed to edit the opportunity");
         }
 
-        if(opportunity.getActivities().isEmpty()){
+        if(opportunity.getActivities() == null || opportunity.getActivities().isEmpty()){
             builder.addMessage(ExceptionMessages.MessageType.ERROR, "The opportunity must have at least one activity.");
+        } else {
+            validateActivities(builder, opportunity.getActivities());
         }
-
-        validateActivities(builder, opportunity.getActivities());
 
         return builder;
     }
