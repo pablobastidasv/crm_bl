@@ -5,7 +5,7 @@ mongodb:
   restart: always
   command: --smallfiles
   volumes:
-    - ./data:/data/db
+    - ./data:/data/db:rw
 
 crm_bl:
   image: jboss/wildfly

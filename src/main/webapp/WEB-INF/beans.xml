@@ -5,4 +5,10 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
         bean-discovery-mode="all">
+
+    <interceptors>
+        <class>co.bassan.app.config.interceptors.PaginatorInterceptor</class>
+        <!--<class>co.bassan.app.opportunity.validator.OpportunityValidatorInterceptor</class>-->
+    </interceptors>
+
 </beans>
